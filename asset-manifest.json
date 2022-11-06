@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/hmsm-wedding/static/css/main.d5d2c16a.css",
-    "main.js": "/hmsm-wedding/static/js/main.dfb2dac4.js",
-    "static/js/787.b5b0ecbb.chunk.js": "/hmsm-wedding/static/js/787.b5b0ecbb.chunk.js",
-    "static/media/Cafe24Oneprettynight.ttf": "/hmsm-wedding/static/media/Cafe24Oneprettynight.59722c73275644d83ed8.ttf",
-    "index.html": "/hmsm-wedding/index.html",
-    "main.d5d2c16a.css.map": "/hmsm-wedding/static/css/main.d5d2c16a.css.map",
-    "main.dfb2dac4.js.map": "/hmsm-wedding/static/js/main.dfb2dac4.js.map",
-    "787.b5b0ecbb.chunk.js.map": "/hmsm-wedding/static/js/787.b5b0ecbb.chunk.js.map"
+    "main.css": "/invitation/static/css/main.3170d854.css",
+    "main.js": "/invitation/static/js/main.01f32b01.js",
+    "static/js/787.b5b0ecbb.chunk.js": "/invitation/static/js/787.b5b0ecbb.chunk.js",
+    "static/media/Cafe24Oneprettynight.ttf": "/invitation/static/media/Cafe24Oneprettynight.59722c73275644d83ed8.ttf",
+    "index.html": "/invitation/index.html",
+    "main.3170d854.css.map": "/invitation/static/css/main.3170d854.css.map",
+    "main.01f32b01.js.map": "/invitation/static/js/main.01f32b01.js.map",
+    "787.b5b0ecbb.chunk.js.map": "/invitation/static/js/787.b5b0ecbb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5d2c16a.css",
-    "static/js/main.dfb2dac4.js"
+    "static/css/main.3170d854.css",
+    "static/js/main.01f32b01.js"
   ]
 }
