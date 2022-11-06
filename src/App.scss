@@ -1,38 +1,379 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "Cafe24Oneprettynight";
+  src: local("Cafe24Oneprettynight"),
+    url("./fonts/Cafe24Oneprettynight.ttf") format("truetype");
+  font-weight: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App,
+body {
+  //max-width: 360px;
+  margin: auto;
+  font-family: "Cafe24Oneprettynight", sans-serif;
+  //overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+div {
+  //text-align: center;
+  .section {
+    width: 100vw;
+    height: 100vh;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+img {
+  width: 100%;
+  height: auto;
+}
+
+.invitation {
+  position: relative;
+
+  .title {
+    position: absolute;
+    top: 91px;
+    left: 44px;
+
+    .icon {
+      width: 26.34px;
+      height: 12.02px;
+      margin-bottom: 18px;
+    }
+
+    .wedding {
+      font-size: 20px;
+      line-height: 21px;
+      letter-spacing: 0.3em;
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+
+    .names {
+      display: flex;
+      flex-grow: 0;
+
+      p {
+        font-size: 29px;
+        line-height: 31px;
+        letter-spacing: 0.3em;
+
+        &:nth-child(2) {
+          margin-right: 10px;
+        }
+      }
+
+      margin-bottom: 41px;
+    }
+
+    .schedule {
+      font-size: 17px;
+      line-height: 19px;
+      letter-spacing: 0.12em;
+      font-weight: 400;
+    }
+  }
+
+  .illust {
+    width: 235.82px;
+    height: 335.97px;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+  }
+}
+
+.location {
+  background-color: #f9eaec;
+
+  .contents {
+    padding-top: 70px;
+  }
+
+  .main-title {
+    color: #604347;
+    font-size: 26px;
+    line-height: 28px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .hotel-address {
+    font-size: 20px;
+    text-align: center;
+    line-height: 28px;
+    margin-bottom: 24px;
+  }
+
+  .route {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 32px;
+
+    a {
+      img {
+        width: 56px;
+        height: 56px;
+        background-color: #ffffff;
+        border-radius: 10px;
+      }
+
+      text-align: center;
+
+      p {
+        font-size: 16px;
+        line-height: 26px;
+      }
+    }
+  }
+
+  .map {
+    //margin-bottom: 39px;
+  }
+
+  .sub-title {
+    background-color: #f0dbde;
+    border-radius: 9px;
+    padding: 2px 20px;
+    width: 70px;
+    text-align: center;
+    margin: 0 auto 16px auto;
+  }
+
+  .parking-address {
+    font-size: 16px;
+    line-height: 23px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+}
+
+.film {
+  .contents {
+    padding-top: 100px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 28px;
+    text-align: center;
+    color: #604347;
+    margin-bottom: 37px;
+  }
+
+  .swiper-container {
+    position: relative;
+
+    .bg {
+      position: absolute;
+      width: 100vw;
+
+      img {
+        position: absolute;
+        width: 100%;
+
+        &:nth-child(1) {
+          top: -20px;
+        }
+      }
+    }
+
+    .swiper-wrapper {
+      margin-top: 46px;
+
+      img {
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+.gallery {
+  .contents {
+    padding-top: 100px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 28px;
+    text-align: center;
+    color: #604347;
+    margin-bottom: 37px;
+  }
+
+  .item-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .item {
+    flex: 0 0 33.3333333%;
+    height: 15vh;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    img {
+      width: 80%;
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+.information {
+  .contents {
+    padding-top: 100px;
+    margin: auto 40px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 28px;
+    color: #604347;
+    text-align: center;
+    margin-bottom: 27px;
+  }
+
+  .border {
+    border: 1px solid #bcbcbc;
+    margin: 22px 0;
+  }
+
+  .sub-title {
+    font-size: 20px;
+    line-height: 21px;
+    color: #604347;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  .account-box {
+    //width: 60%;
+    margin: auto;
+    background-color: #f5f3f3;
+    padding: 16px;
+    border-radius: 10px;
+
+    .account-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #524e4f;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+
+      > div:first-child {
+        > p:first-child {
+          font-size: 16px;
+          line-height: 17px;
+          margin: 6px 0;
+        }
+
+        > p:nth-child(2) {
+          font-size: 16px;
+          line-height: 17px;
+          letter-spacing: 0.06em;
+        }
+      }
+
+      > div:last-child {
+        font-size: 14px;
+        line-height: 15px;
+
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 5px 12px;
+      }
+    }
+  }
+}
+
+.modal-background {
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+
+  .modal-content {
+    //height: 100%;
+    width: 85vw;
+    margin-top: 5vh;
+    position: relative;
+    overflow: scroll;
+    background: #ffffff;
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #604347;
+    }
+
+    .thumb-img {
+      //width:
+      height: 7vh;
+    }
+  }
 }
 
-.App-link {
-  color: #61dafb;
+.share {
+  position: relative;
+  transform: translateY(-10vh);
+
+  .content {
+    font-size: 18px;
+    line-height: 19px;
+    text-align: center;
+    color: #604347;
+    background: #edd2d2;
+    display: flex;
+
+    div {
+      width: 100%;
+      padding: 30px 0;
+    }
+    > div:last-child {
+      background: #ffffff;
+    }
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.arrow {
+  border: solid #604347;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
