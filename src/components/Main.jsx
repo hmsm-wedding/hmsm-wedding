@@ -68,6 +68,7 @@ const Message = () => {
 };
 
 const ImageUrl = process.env.PUBLIC_URL + "/images/";
+// const ImageUrl = + "/images/";
 
 const Invitation = () => {
   return (
