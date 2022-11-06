@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/invitation/static/css/main.3170d854.css",
-    "main.js": "/invitation/static/js/main.13dc72f1.js",
+    "main.js": "/invitation/static/js/main.98d3cf30.js",
     "static/js/787.b2010ada.chunk.js": "/invitation/static/js/787.b2010ada.chunk.js",
     "static/media/Cafe24Oneprettynight.ttf": "/invitation/static/media/Cafe24Oneprettynight.59722c73275644d83ed8.ttf",
     "index.html": "/invitation/index.html",
     "main.3170d854.css.map": "/invitation/static/css/main.3170d854.css.map",
-    "main.13dc72f1.js.map": "/invitation/static/js/main.13dc72f1.js.map",
+    "main.98d3cf30.js.map": "/invitation/static/js/main.98d3cf30.js.map",
     "787.b2010ada.chunk.js.map": "/invitation/static/js/787.b2010ada.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3170d854.css",
-    "static/js/main.13dc72f1.js"
+    "static/js/main.98d3cf30.js"
   ]
 }
