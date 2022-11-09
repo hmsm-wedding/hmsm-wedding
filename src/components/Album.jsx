@@ -19,7 +19,7 @@ const Album = ({ handleClose }) => {
     images.push(
       <SwiperSlide key={`film_${i}`}>
         <img
-          src={ImageUrl + `studio/${i}.JPG`}
+          src={ImageUrl + `studio/${i}.jpg`}
           alt={`film_${i}`}
           loading="lazy"
         />
@@ -30,7 +30,7 @@ const Album = ({ handleClose }) => {
       <SwiperSlide key={`film_${i}`}>
         <img
           className="thumb-img"
-          src={ImageUrl + `thumb/${i}.JPG`}
+          src={ImageUrl + `thumb/${i}.jpg`}
           alt={`film_${i}`}
           loading="lazy"
         />

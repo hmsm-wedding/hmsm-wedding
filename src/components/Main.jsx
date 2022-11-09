@@ -182,7 +182,7 @@ const Film = () => {
     images.push(
       <SwiperSlide key={`film_${i}`}>
         <img
-          src={ImageUrl + `film/${i}.JPG`}
+          src={ImageUrl + `film/${i}.jpg`}
           alt={`film_${i}`}
           loading="lazy"
         />
@@ -215,7 +215,7 @@ const Film = () => {
 const Gallery = ({ showAlbum }) => {
   const images = [];
   for (let i = 1; i <= 12; i++) {
-    images.push(`${ImageUrl}studio/${i}.JPG`);
+    images.push(`${ImageUrl}studio/${i}.jpg`);
   }
   return (
     <div className="section gallery">
