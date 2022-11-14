@@ -9,7 +9,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-const Album = ({ handleClose }) => {
+const Album = ({ handleClose, selected }) => {
   const images = [];
   const thumbs = [];
   const ImageUrl = process.env.PUBLIC_URL + "/images/";
@@ -17,32 +17,30 @@ const Album = ({ handleClose }) => {
 
   for (let i = 1; i <= 12; i++) {
     images.push(
-      <SwiperSlide key={`film_${i}`}>
+      <SwiperSlide key={`studio_${i}`}>
         <img
           src={ImageUrl + `studio/${i}.jpg`}
-          alt={`film_${i}`}
+          alt={`studio_${i}`}
           loading="lazy"
         />
       </SwiperSlide>
     );
 
     thumbs.push(
-      <SwiperSlide key={`film_${i}`}>
+      <SwiperSlide key={`studio_${i}`}>
         <img
           className="thumb-img"
           src={ImageUrl + `thumb/${i}.jpg`}
-          alt={`film_${i}`}
+          alt={`studio_${i}`}
           loading="lazy"
         />
       </SwiperSlide>
     );
   }
+
   const pagination = {
     clickable: true,
     renderBullet: function (i, name) {
-      // return `<div style={width: '10px'} className=${name}>
-      //   <img src=${ImageUrl + `studio/${i+1}.JPG`} alt=${`film_${i+1}`} loading='lazy'/>
-      // </div>`;
       return '<span class="' + name + '">' + (i + 1) + "</span>";
     },
   };
@@ -50,16 +48,13 @@ const Album = ({ handleClose }) => {
   return (
     <div className="modal-background">
       <div className="modal-content">
-        <div onClick={handleClose}>닫기</div>
         <Swiper
           slidesPerView={1}
+          initialSlide={selected}
           spaceBetween={20}
           centeredSlides={true}
           className="album-swiper"
           pagination={pagination}
-          // modules={[Pagination]}
-          // navigation={true}
-
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
         >
@@ -68,7 +63,7 @@ const Album = ({ handleClose }) => {
 
         <Swiper
           onSwiper={setThumbsSwiper}
-          // loop={true}
+          initialSlide={selected}
           spaceBetween={10}
           slidesPerView={6}
           freeMode={true}
@@ -78,6 +73,9 @@ const Album = ({ handleClose }) => {
         >
           {thumbs}
         </Swiper>
+
+        <div className="modal-close" onClick={handleClose}>닫기</div>
+
       </div>
     </div>
   );

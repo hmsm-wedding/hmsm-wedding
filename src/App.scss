@@ -1,23 +1,33 @@
 @font-face {
   font-family: "Cafe24Oneprettynight";
   src: local("Cafe24Oneprettynight"),
-    url("./fonts/Cafe24Oneprettynight.ttf") format("truetype");
+  url("./fonts/Cafe24Oneprettynight.ttf") format("truetype");
   font-weight: auto;
 }
 
-.App,
-body {
-  //max-width: 360px;
-  margin: auto;
+.App, body {
   font-family: "Cafe24Oneprettynight", sans-serif;
-  //overflow: hidden;
+  //background-color: #f0dbde;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }
 
 div {
-  //text-align: center;
   .section {
+    @media (max-width: 480px) {
+    }
+
+    @media (min-width: 481px) {
+      max-width: 360px;
+    }
+
     width: 100vw;
-    height: 100vh;
+    //height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    margin: 0 auto;
   }
 }
 
@@ -28,6 +38,7 @@ img {
 
 .invitation {
   position: relative;
+  background-color: #ffffff;
 
   .title {
     position: absolute;
@@ -82,11 +93,23 @@ img {
   }
 }
 
+.section.location {
+  min-height: 819px;
+  height: 100%;
+}
+
 .location {
   background-color: #f9eaec;
 
   .contents {
-    padding-top: 70px;
+    @media (max-width: 480px) {
+      padding: 15% 0;
+    }
+
+    @media (min-width: 481px) {
+      padding: 70px 0;
+    }
+
   }
 
   .main-title {
@@ -167,6 +190,10 @@ img {
     .bg {
       position: absolute;
       width: 100vw;
+
+      @media (min-width: 481px) {
+        max-width: 360px;
+      }
 
       img {
         position: absolute;
@@ -311,6 +338,7 @@ img {
 
   .modal-content {
     //height: 100%;
+    padding: 10px;
     width: 85vw;
     margin-top: 5vh;
     position: relative;
@@ -332,6 +360,13 @@ img {
 .share {
   position: relative;
   transform: translateY(-10vh);
+  @media (min-width: 481px) {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  @media (max-width: 480px) {
+    transform: translateY(-10vh);
+  }
 
   .content {
     font-size: 18px;
@@ -345,6 +380,7 @@ img {
       width: 100%;
       padding: 30px 0;
     }
+
     > div:last-child {
       background: #ffffff;
     }
@@ -376,4 +412,114 @@ img {
 .down {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.section {
+  &.message {
+    height: 400vh;
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .frame {
+    z-index: 1;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .image_0 {
+    z-index: 0;
+    background-image: url("/assets/1.jpg");
+  }
+
+  .image_1 {
+    z-index: 1;
+    background-image: url("/assets/2.jpg");
+    background-position: 35% center;
+  }
+
+  .image_2 {
+    z-index: 2;
+    background-image: url("/assets/3.jpg");
+  }
+
+  .image_3 {
+    z-index: 3;
+    background-image: url("/assets/4.jpg");
+  }
+
+  .image_visible {
+    opacity: 1;
+    transition: background 300ms ease-in 200ms;
+    -webkit-animation: myfirst 0.5s; /* Chrome, Safari, Opera */
+    animation: myfirst 0.5s;
+  }
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes myfirst {
+    from {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Standard syntax */
+  @keyframes myfirst {
+    from {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .message-box {
+    background: linear-gradient(180deg, #FFFFFF 10%, rgba(255, 255, 255, 0.8) 65%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.1) 98%, rgba(255, 255, 255, 0) 85%);
+    @media (max-width: 480px) {
+      padding-top: 10vh;
+      padding-left: 10vw;
+      padding-bottom: 10vh;
+    }
+
+    @media (min-width: 481px) {
+      padding-top: 40px;
+      padding-left: 40px;
+      padding-bottom: 40px;
+    }
+
+
+    .icon {
+      width: 26.34px;
+      height: 12.02px;
+      margin-bottom: 18px;
+    }
+
+    .message-text {
+      font-size: 19px;
+      line-height: 29px;
+    }
+  }
+}
+
+.modal-close {
+  margin: 10px;
 }

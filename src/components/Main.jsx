@@ -3,32 +3,49 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import ModalPortal from "./ModalPortal";
 import Album from "./Album";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import classNames from "classnames";
+
+const ImageUrl = process.env.PUBLIC_URL + "/images/";
 
 const Main = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoNo, setPhotoNo] = useState(0);
+  const [loading, setLoading] = useState(true);
   const showAlbum = (no) => {
     setPhotoNo(no);
     setIsOpen(true);
   };
-  return (
-    <div>
-      <Invitation />
-      {/*<p>Message</p><br/>*/}
-      {/*<Message/>*/}
-      {isOpen && (
-        <ModalPortal>
-          <Album handleClose={() => setIsOpen(false)} />
-        </ModalPortal>
-      )}
-      <Location />
-      <Film />
-      <Gallery showAlbum={showAlbum} photoNo={photoNo} />
-      <Information />
-      <Share />
-    </div>
-  );
+  useEffect(() => {
+    const onPageLoad = () => {
+      setLoading(false);
+    };
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad);
+      return () => window.removeEventListener("load", onPageLoad);
+    }
+  }, []);
+
+  if (loading) return <div>불러오는중...️</div>;
+  else
+    return (
+      <div>
+        <Invitation />
+        <Message />
+        {isOpen && (
+          <ModalPortal>
+            <Album handleClose={() => setIsOpen(false)} selected={photoNo} />
+          </ModalPortal>
+        )}
+        <Location />
+        <Film />
+        <Gallery showAlbum={showAlbum} photoNo={photoNo} />
+        <Information />
+        <Share />
+      </div>
+    );
 };
 
 const isMobile = () => {
@@ -46,29 +63,6 @@ const isMobile = () => {
   })(navigator.userAgent || navigator.vendor || window.opera);
   return check;
 };
-
-const Message = () => {
-  return (
-    <>
-      <div>
-        한 겨울에 얇은 드레스를 입고 <br />
-        그마저 찍은 필름은 초점이 나가고 <br />
-        이렇게 모든게 어설픈 우리지만, <br />
-        <br />
-        상대방의 미소를 보려 면사포를 쓰고 <br />
-        서로에게 기쁨이 되려 춤을 추던 <br />
-        그 마음으로 평생 아끼며 살겠습니다. <br />
-        <br />
-        따뜻한 봄이 다가오던 겨울 끝자락에 처음 만나 <br />
-        포근한 겨울이 시작되는 12월에 부부가 됩니다. <br />
-        함께 축복해주세요. <br />
-      </div>
-    </>
-  );
-};
-
-const ImageUrl = process.env.PUBLIC_URL + "/images/";
-// const ImageUrl = + "/images/";
 
 const Invitation = () => {
   return (
@@ -93,6 +87,69 @@ const Invitation = () => {
       </div>
       <div className="illust">
         <img src={ImageUrl + "illust.png"} alt="웨딩사진" />
+      </div>
+    </div>
+  );
+};
+const Message = () => {
+  const images = [0, 1, 2, 3];
+  const texts = [
+    "한 겨울에 얇은 드레스를 입고, 그마저 찍은 필름은 초점이 나가고, 이렇게 모든게 어설픈 우리지만,",
+    "상대방의 미소를 보려 면사포를 쓰고, 서로에게 기쁨이 되려 춤을 추던, 그 마음으로 평생 아끼며 살겠습니다.",
+    "따뜻한 봄이 다가오던, 겨울 끝자락에 처음 만나, 포근한 겨울이 시작되는, 12월에 부부가 됩니다.",
+    "2022년 12월 10일., 힘찬 첫 걸음이 될 수 있도록, 함께 자리하여 축복해 주시면, 더없는 기쁨으로 간직하겠습니다.",
+  ];
+  const [visibleImagesMap, setVisibleImagesMap] = useState(
+    images.reduce((map, image) => {
+      map[image] = false;
+      return map;
+    }, {})
+  );
+
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const viewportHeight = window.innerHeight;
+
+      const newVisibleImagesMap = images.reduce((map, image) => {
+        map[image] = scrollTop >= image * viewportHeight;
+        return map;
+      }, {});
+      setVisibleImagesMap(newVisibleImagesMap);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="section message">
+      <div className="sticky">
+        <div className="frame">
+          {images.map((image, idx) => (
+            <div
+              className={classNames("image", `image_${image}`, {
+                image_visible: visibleImagesMap[image],
+              })}
+              key={idx}
+            >
+              <div className="message-box">
+                <div className="icon">
+                  <img src={ImageUrl + "heart.png"} alt="하트" />
+                </div>
+                {texts[idx].split(",").map((text, idx) => {
+                  return (
+                    <p key={idx} className="message-text">
+                      {text}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -135,13 +192,21 @@ const Location = () => {
           <a
             href={`nmap://route/public?dlat=${hotel.lat}&dlng=${hotel.lng}&dname=${hotel.name}`}
           >
-            <img />
+            <img
+              src={ImageUrl + "/icons/naver1.png"}
+              alt="네이버지도"
+              loading="lazy"
+            />
             <p>네이버</p>
           </a>
           <a
             href={`kakaomap://route?&ep=${hotel.lat},${hotel.lng}&by=PUBLICTRANSIT`}
           >
-            <img />
+            <img
+              src={ImageUrl + "/icons/kakao1.png"}
+              alt="카카오지도"
+              loading="lazy"
+            />
             <p>카카오</p>
           </a>
         </div>
@@ -156,19 +221,31 @@ const Location = () => {
           <p>서울시 중구 을지로 170 을지트윈타워</p>
         </div>
         <div className="route">
-          <a href={`tmap://search?name=${parking.name}`}>
-            <img />
-            <p>티맵</p>
-          </a>
           <a
             href={`nmap://route/car?dlat=${parking.lat}&dlng=${parking.lng}&dname=${parking.name}`}
           >
-            <img />
+            <img
+              src={ImageUrl + "/icons/naver2.png"}
+              alt="네이버지도"
+              loading="lazy"
+            />
             <p>네이버</p>
           </a>
           <a href={`kakaomap://route?&ep=${parking.lat},${parking.lng}&by=CAR`}>
-            <img />
+            <img
+              src={ImageUrl + "/icons/kakao2.png"}
+              alt="카카오지도"
+              loading="lazy"
+            />
             <p>카카오</p>
+          </a>
+          <a href={`tmap://search?name=${parking.name}`}>
+            <img
+              src={ImageUrl + "/icons/tmap.png"}
+              alt="티맵지도"
+              loading="lazy"
+            />
+            <p>티맵</p>
           </a>
         </div>
       </div>
@@ -195,8 +272,16 @@ const Film = () => {
         <p className="title"># 필름, 사계절, 우리</p>
         <div className="swiper-container">
           <div className="bg">
-            <img src={ImageUrl + "film-frame2.png"} alt="필름이미지2" />
-            <img src={ImageUrl + "film-frame1.png"} alt="필름이미지1" />
+            <img
+              src={ImageUrl + "film-frame2.png"}
+              alt="필름이미지2"
+              loading="lazy"
+            />
+            <img
+              src={ImageUrl + "film-frame1.png"}
+              alt="필름이미지1"
+              loading="lazy"
+            />
           </div>
           <Swiper
             slidesPerView={1.2}
@@ -215,7 +300,7 @@ const Film = () => {
 const Gallery = ({ showAlbum }) => {
   const images = [];
   for (let i = 1; i <= 12; i++) {
-    images.push(`${ImageUrl}studio/${i}.jpg`);
+    images.push(`${ImageUrl}thumb/${i}.jpg`);
   }
   return (
     <div className="section gallery">
@@ -224,7 +309,7 @@ const Gallery = ({ showAlbum }) => {
         <div className="item-wrapper">
           {images.map((url, idx) => (
             <div className="item" key={idx} onClick={() => showAlbum(idx)}>
-              <img src={url} alt={`웨딩사진_${idx + 1}`} />
+              <img src={url} alt={`웨딩사진_${idx + 1}`} loading="lazy" />
             </div>
           ))}
         </div>
@@ -241,13 +326,25 @@ const Information = () => {
   };
 
   const onCopy = async (account) => {
-    if ("clipboard" in navigator) {
-      await navigator.clipboard.writeText(account);
-    } else {
-      document.execCommand("copy", true, account);
-    }
+    // if ("clipboard" in navigator) {
+    //   await navigator.clipboard.writeText(account);
+    // } else {
+    //   document.execCommand("copy", true, account);
+    // }
+    //
+    // alert("복사완료");
 
-    alert("복사완료");
+    const $input = document.createElement("input");
+    $input.value = account;
+    $input.style.position = "absolute";
+    $input.style.left = "-999px";
+    document.body.appendChild($input);
+    $input.select();
+
+    document.execCommand("copy");
+    document.body.removeChild($input);
+
+    alert("계좌번호 복사가 완료되었습니다♡");
   };
 
   const Account = ({ name, account }) => {
@@ -275,8 +372,9 @@ const Information = () => {
           </p>
           {showName === "groom" && (
             <div className="account-box">
-              <Account name="나영길" account="신한 110-263-23412" />
-              <Account name="나영길" account="신한 1ㅘㅓㅚㅓㅏ3412" />
+              <Account name="나영길" account="하나 196-890111-41607" />
+              <Account name="박기련" account="하나 196-890130-74607" />
+              <Account name="나현명" account="국민 92644331755" />
             </div>
           )}
         </div>
@@ -291,8 +389,8 @@ const Information = () => {
           </p>
           {showName === "bride" && (
             <div className="account-box">
-              <Account name="나영길" account="신한 110-263-23412" />
-              <Account name="나영길" account="신한 110-263-23412" />
+              <Account name="가종숙" account="국민 720-5010-1460906" />
+              <Account name="신수민" account="신한 110-263-705255" />
             </div>
           )}
         </div>
@@ -303,18 +401,58 @@ const Information = () => {
 
 const Share = () => {
   const onCopy = async () => {
-    if ("clipboard" in navigator) {
-      await navigator.clipboard.writeText('hmsm-wedding.github.io');
-    } else {
-      document.execCommand("copy", true, 'hmsm-wedding.github.io');
-    }
+    // if ("clipboard" in navigator) {
+    //   await navigator.clipboard.writeText("https://hmsm-wedding.github.io/invitation");
+    // } else {
+    //   document.execCommand("copy", true, "https://hmsm-wedding.github.io/invitation");
+    // }
+    //
+    // alert("청첩장 주소 복사완료");
+    const $input = document.createElement("input");
+    $input.value = "https://hmsm-wedding.github.io/invitation";
+    $input.style.position = "absolute";
+    $input.style.left = "-999px";
+    document.body.appendChild($input);
+    $input.select();
 
-    alert("청첩장 주소 복사완료");
+    document.execCommand("copy");
+    document.body.removeChild($input);
+
+    alert("청첩장 주소 복사가 완료되었습니다♡");
   };
+
+  const shareKakao = () => {
+    window.Kakao.Share.createDefaultButton({
+      container: "#kakao-link-btn",
+      objectType: "location",
+      address: "서울시 중구 마른내로 71",
+      addressTitle: "PJ호텔 1층 뮤즈홀",
+      content: {
+        title: "현명과 수민의 결혼식에 초대합니다.",
+        description: "2022년 12월 10일(토) 11시 30분",
+        imageUrl:
+            "https://hmsm-wedding.github.io/invitation/images/thumb/12.jpg",
+        link: {
+          mobileWebUrl: "https://hmsm-wedding.github.io/invitation",
+          webUrl: "https://hmsm-wedding.github.io/invitation",
+        },
+      },
+      buttons: [
+        {
+          title: "청첩장 보기",
+          link: {
+            mobileWebUrl: "https://hmsm-wedding.github.io/invitation",
+            webUrl: "https://hmsm-wedding.github.io/invitation",
+          },
+        },
+      ],
+    });
+  }
+
   return (
     <div className="share">
       <div className="content">
-        <div>
+        <div id="kakao-link-btn" onClick={shareKakao}>
           <span>카카오톡으로 공유하기</span>
         </div>
         <div onClick={onCopy}>
