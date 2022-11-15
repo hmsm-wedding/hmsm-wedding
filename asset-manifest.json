@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/invitation/static/css/main.d0808a97.css",
-    "main.js": "/invitation/static/js/main.1ec7fe5b.js",
+    "main.css": "/invitation/static/css/main.0370c0eb.css",
+    "main.js": "/invitation/static/js/main.1fb8a75c.js",
     "static/js/787.b2010ada.chunk.js": "/invitation/static/js/787.b2010ada.chunk.js",
     "static/media/Cafe24Oneprettynight.ttf": "/invitation/static/media/Cafe24Oneprettynight.59722c73275644d83ed8.ttf",
     "static/media/4.jpg": "/invitation/static/media/4.b83e9deee2c13bbc4276.jpg",
@@ -9,12 +9,12 @@
     "static/media/2.jpg": "/invitation/static/media/2.f91850963d49d98183b9.jpg",
     "static/media/3.jpg": "/invitation/static/media/3.acff274e23a24426c8d0.jpg",
     "index.html": "/invitation/index.html",
-    "main.d0808a97.css.map": "/invitation/static/css/main.d0808a97.css.map",
-    "main.1ec7fe5b.js.map": "/invitation/static/js/main.1ec7fe5b.js.map",
+    "main.0370c0eb.css.map": "/invitation/static/css/main.0370c0eb.css.map",
+    "main.1fb8a75c.js.map": "/invitation/static/js/main.1fb8a75c.js.map",
     "787.b2010ada.chunk.js.map": "/invitation/static/js/787.b2010ada.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d0808a97.css",
-    "static/js/main.1ec7fe5b.js"
+    "static/css/main.0370c0eb.css",
+    "static/js/main.1fb8a75c.js"
   ]
 }
